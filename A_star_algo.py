@@ -246,7 +246,7 @@ def main(win, width):
                 if event.key == pygame.K_ESCAPE:
                         sys.exit()
                 if event.key == pygame.QUIT:
-                        sys.quit()
+                        pygame.quit()
 
                 if event.key == pygame.K_c:#Reseting the whole grid and barriers
                     start = None
