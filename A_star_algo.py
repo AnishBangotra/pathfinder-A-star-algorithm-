@@ -2,22 +2,13 @@ import pygame, sys
 import math
 from queue import PriorityQueue
 
-pygame.mixer.init()
-pygame.mixer.pre_init(44100, -16, 2, 512)
-pygame.mixer.set_num_channels(64)
-pygame.init()
-
 WIDTH = 800
 WIN = pygame.display.set_mode((WIDTH, WIDTH))
 pygame.display.set_caption("A* Path finding Algorithm")
 
-music = pygame.mixer.music.load('music.mp3')
-pygame.mixer.music.play(-1)
-
-
 RED = (255,0,0)
 GREEN = (0,255,0)
-BLUE = (0,255,0)
+BLUE = (0,53,107)
 YELLOW = (255,255,0)
 WHITE=(255,255,255)
 BLACK=(0,0,0)
@@ -32,7 +23,7 @@ class Spot:
         self.col = col
         self.x = row * width
         self.y = col * width
-        self.color = WHITE
+        self.color = BLUE
         self.neighbors= []
         self.width=width
         self.total_rows = total_rows
@@ -47,7 +38,7 @@ class Spot:
         return self.color == GREEN
 
     def is_barrier(self):
-        return self.color == BLACK
+        return self.color == WHITE
 
     def is_start(self):
         return self.color == ORANGE
@@ -56,7 +47,7 @@ class Spot:
         return self.color == TURQUOISE
 
     def reset(self):
-        self.color = WHITE
+        self.color = BLUE
 
     def make_start(self):
         self.color = ORANGE
@@ -68,7 +59,7 @@ class Spot:
         self.color = GREEN
 
     def make_barrier(self):
-        self.color = BLACK
+        self.color = WHITE
 
     def make_end(self):
         self.color = TURQUOISE
@@ -76,7 +67,7 @@ class Spot:
     def make_path(self):
             count=0
             count+=1
-            colors=[WHITE, PURPLE]
+            colors=[BLUE, PURPLE]
             if count % 2 == 0:
                 sel_color = colors[0]
             else:
@@ -176,7 +167,7 @@ def draw_grid(win, rows, width):
             pygame.draw.line(win, GREY, (j * gap, 0),(j * gap, width))
 
 def draw(win, grid, rows, width):
-    win.fill(WHITE)
+    win.fill(BLUE)
 
     for row in grid:
         for spot in row:
@@ -245,8 +236,6 @@ def main(win, width):
                 #closing the system
                 if event.key == pygame.K_ESCAPE:
                         sys.exit()
-                if event.key == pygame.QUIT:
-                        pygame.quit()
 
                 if event.key == pygame.K_c:#Reseting the whole grid and barriers
                     start = None
