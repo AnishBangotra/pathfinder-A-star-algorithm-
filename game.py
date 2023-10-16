@@ -17,8 +17,6 @@ class Game:
         self.font_name1 = pygame.font.get_default_font()
         self.BLACK, self.WHITE = (0,0,0), (255,255,255)
         self.main_menu = MainMenu(self)
-        #self.options = OptionsMenu(self)
-        #self.credits = CreditsMenu(self)
         self.curr_menu = self.main_menu
 
     def game_loop(self):
@@ -26,8 +24,6 @@ class Game:
             self.check_events()
             if self.START_KEY:
                 self.playing = False
-            #self.display.fill(self.BLACK)
-            #self.draw_text('Thanks for playing', 50, self.DISPLAY_W/2, self.DISPLAY_H/2)
             self.window.blit(self.display, main(WIN,WIDTH), (0,0))
             pygame.display.update()
             self.reset_key()
